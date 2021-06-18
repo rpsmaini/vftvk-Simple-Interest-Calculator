@@ -1,39 +1,41 @@
-function compute() {
-
+// Compute Interest value
+function compute()
+{
     var principal = document.getElementById("principal").value;
     var rate = document.getElementById("rate").value;
     var years = document.getElementById("years").value;
-    var year = new Date().getFullYear()+parseInt(years)
-    result = document.getElementById("result");
-    result.innerHTML=
-    "If you deposit" + " " + (principal) + " <br> " + 
-    "At an interest rate of" + " " + (rate) + " <br> "+ 
-    "You will recieve an amount of" + " " + (principal * years * rate / 100) + " <br>" + 
-    "In the year" + " " + (year);
 
-
+    var interest =  principal * years * rate / 100;
+    var final_year = new Date().getFullYear() + parseInt(years);
+    document.getElementById('result').innerHTML = `If you deposit <span class="result-number">${principal}</span>,<br /> at an interest rate of <span class="result-number">${rate}%</span>.<br /> You will receive an amount of <span class="result-number">${interest.toFixed(2)}</span>,<br /> in the year <span class="result-number">${final_year}</span>`;
 }
-    
-function updateRate() {
 
-    var rateval = document.getElementById("rate").value;
-    document.getElementById("rate_val").innerText=rateval;
+// Updates slider value
+function updateSlider()
+{
+    var rate = document.getElementById("rate").value;
+    document.getElementById('slider_value').innerHTML = `${rate}%`;
 }
-        
-function validation() {
 
-    var num = /^[0]+$/;
-    if (principal.value.match(num))  {
-
-    alert("Enter Positive Number");
-
-    
-
-    }
-    else {
-
-        null;
+// Performs form validation
+function validate()
+{
+    const principal_element = document.getElementById("principal");
+    var principal = principal_element.value;
+    if (Number(principal) <= 0 || principal == "") {
+        alert("Enter a positive number for amount");
+        principal_element.focus();
+        return false;
     }
 
-}
-        
+    const year_element = document.getElementById("years");
+    var year = year_element.value;
+    if (year == "") {
+        alert("Set year number");
+        year_element.focus();
+        return false;
+    }
+
+    compute();
+    return false; // To prevent actual submit and page refresh.
+}   
