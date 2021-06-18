@@ -6,7 +6,7 @@ function compute() {
     var year = new Date().getFullYear()+parseInt(years)
     result = document.getElementById("result");
     result.innerHTML=
-    "If you deposite" + " " + (principal) + " <br> " + 
+    "If you deposit" + " " + (principal) + " <br> " + 
     "At an interest rate of" + " " + (rate) + " <br> "+ 
     "You will recieve an amount of" + " " + (principal * years * rate / 100) + " <br>" + 
     "In the year" + " " + (year);
